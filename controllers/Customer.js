@@ -2,9 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 //Create
-router.post("/", (req, res) => {
-  res.json({ message: "Post route working" });
-});
+router.post("/", (req, res) => {});
 
 //Read One
 router.get("/:id", (req, res) => {
