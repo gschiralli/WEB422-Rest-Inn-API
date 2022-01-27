@@ -6,21 +6,21 @@ const { Schema } = mongoose;
 const customerSchema = new Schema({
   firstName: {
     type: String,
-    required: true,
+    required: [true, "Please enter a first Name"],
   },
   lastName: {
     type: String,
-    required: true,
+    required: [true, "Please enter a last Name"],
   },
   email: {
     type: String,
-    required: true,
+    required: [true, "Please enter an email"],
   },
   password: {
     type: String,
-    required: true,
+    required: [true, "Please enter a password"],
   },
-  phoneNumbers: [String],
+  phoneNumbers: { type: [String], default: undefined },
 });
 
 customerSchema.pre("save", async function (next) {

@@ -1,5 +1,33 @@
+const { Mongoose } = require("mongoose");
 const customerModel = require("../models/Customer.js");
 
-exports.createCustomer = (req, res) => {
-  res.json({ message: "request received" });
+exports.createCustomer = async (req, res) => {
+  const customer = new customerModel(req.body);
+  try {
+    await customer.save();
+    res.json({ message: "Customer was created successfully", data: customer });
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).json({ message: error.message });
+  }
+};
+
+exports.getCustomerById = async (req, res) => {
+  try {
+    const customer = await customerModel.findById(req.params.id);
+    if (customer) {
+      res.json({
+        message: `Customer with the id ${req.params.id}`,
+        data: customer,
+      });
+    } else {
+      res.status(404).json({
+        message: `Customer with the id ${req.params.id} is not in our database`,
+      });
+    }
+  } catch (error) {
+    res.status(500).json({
+      message: error.message,
+    });
+  }
 };
