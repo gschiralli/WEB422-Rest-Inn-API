@@ -19,10 +19,12 @@ const propertySchema = new Schema({
   },
   houseRules: {
     type: [String],
+    default: undefined,
   },
   amenities: {
     type: [String],
     required: true,
+    default: undefined,
   },
   location: {
     type: String,
