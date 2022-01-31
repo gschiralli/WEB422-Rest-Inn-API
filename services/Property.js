@@ -12,5 +12,16 @@ exports.createProperty = async (req, res) => {
 };
 
 exports.getAllProperties = async (req, res) => {
+  try {
+    const properties = await propertyModel.find();
+    res.json({
+      message: "list of all the properties in the database",
+      data: properties,
+    });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
   res.json({ message: "Get all properties working" });
 };
+
+exports.getAllPropertyTypes = async (req, res) => {};
