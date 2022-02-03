@@ -75,7 +75,7 @@ exports.getPropertyByID = async (req, res) => {
       });
     }
   } catch (error) {
-    res.json({ message: error.message });
+    res.status(500).json({ message: error.message });
   }
 };
 
@@ -89,8 +89,14 @@ exports.updatePropertyByID = async (req, res) => {
         runValidators: true,
       }
     );
-    res.json({ message: "Update successful", data: property });
+    if (property) {
+      res.json({ message: "Update successful", data: property });
+    } else {
+      res.json({
+        message: `Property with the id of ${req.params.id} is not in the database`,
+      });
+    }
   } catch (error) {
-    res.json({ message: error.message });
+    res.status(500).json({ message: error.message });
   }
 };
