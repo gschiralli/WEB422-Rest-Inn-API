@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 const propertyService = require("../services/Property.js");
 const {
-  isValidId,
   createPropertyValidate,
   updatePropertyValidate,
 } = require("../middleware/validation.js");
@@ -20,17 +19,17 @@ router.get("/types", propertyService.getAllPropertyTypes);
 router.get("/best-sellers", propertyService.getBestSellers);
 
 //Retrieve property by id
-router.get("/:id", isValidId, propertyService.getPropertyByID);
+router.get("/:id", propertyService.getPropertyByID);
 
 //Update property by id
 router.put(
   "/:id",
-  isValidId,
+
   updatePropertyValidate,
   propertyService.updatePropertyByID
 );
 
 //Delete property by id
-router.delete("/:id", isValidId, propertyService.deletePropertyByID);
+router.delete("/:id", propertyService.deletePropertyByID);
 
 module.exports = router;
