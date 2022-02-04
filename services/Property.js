@@ -13,21 +13,19 @@ exports.createProperty = async (req, res) => {
 
 exports.getAllProperties = async (req, res) => {
   const queryString = {};
-  let message = "List of all the properties";
 
   if (req.query.location) {
     queryString.location = req.query.location;
-    message = `List of all the properties that are located in ${queryString.location}`;
-  } else if (req.query.type) {
+  }
+  if (req.query.type) {
     queryString.type = req.query.type;
-    message = `List of all the properties of type ${queryString.type}`;
   }
 
   try {
     const properties = await propertyModel.find(queryString);
 
     res.json({
-      message,
+      message: "List of all properties",
       data: properties,
     });
   } catch (error) {
@@ -70,8 +68,8 @@ exports.getPropertyByID = async (req, res) => {
         data: property,
       });
     } else {
-      res.json({
-        message: `There is no property with the id of ${req.params.id} in the database`,
+      res.status(404).json({
+        message: `The property with the id of ${req.params.id} is not in the database`,
       });
     }
   } catch (error) {
@@ -92,8 +90,25 @@ exports.updatePropertyByID = async (req, res) => {
     if (property) {
       res.json({ message: "Update successful", data: property });
     } else {
+      res.status(404).json({
+        message: `The property with the id of ${req.params.id} is not in the database`,
+      });
+    }
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+exports.deletePropertyByID = async (req, res) => {
+  try {
+    const property = await propertyModel.findByIdAndRemove(req.params.id);
+    if (property) {
       res.json({
-        message: `Property with the id of ${req.params.id} is not in the database`,
+        message: `The property with the id of ${req.params.id} was deleted`,
+      });
+    } else {
+      res.status(404).json({
+        message: `The property with the id of ${req.params.id} is not in the database`,
       });
     }
   } catch (error) {
