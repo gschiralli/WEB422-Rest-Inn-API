@@ -1,10 +1,12 @@
 const express = require("express");
 const mongoose = require("mongoose");
-require("dotenv").config({ path: "config/keys.env" });
 
 const customerController = require("./controllers/Customer.js");
 const propertyController = require("./controllers/Property.js");
 
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv").config({ path: "config/keys.env" });
+}
 const app = express();
 
 const PORT = process.env.PORT || 3000;
