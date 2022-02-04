@@ -101,7 +101,13 @@ exports.updatePropertyByID = async (req, res) => {
       });
     }
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    if (error.name === "CastError" && error.kind === "ObjectId") {
+      res.status(404).json({
+        message: `The property with the id of ${req.params.id} is not in the database`,
+      });
+    } else {
+      res.status(500).json({ message: error.message });
+    }
   }
 };
 
