@@ -15,6 +15,10 @@ app.use("/customers", customerController);
 
 app.use("/properties", propertyController);
 
+app.use((req, res) => {
+  res.status(404).json({ message: "Endpoint does not exist!" });
+});
+
 app.listen(PORT, async () => {
   console.log(`Rest-Inn API is up and running on PORT ${PORT}`);
 
