@@ -21,6 +21,7 @@ exports.createCustomerSchema = Joi.object({
 });
 
 exports.updatePropertySchema = Joi.object({
+  _id: Joi.string().forbidden(),
   title: Joi.string().min(3).max(30),
   rentalPrice: Joi.number().positive(),
   description: Joi.string(),
