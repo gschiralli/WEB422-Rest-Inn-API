@@ -17,10 +17,6 @@ app.use("/customers", customerController);
 
 app.use("/properties", propertyController);
 
-app.use("/", (req, res) => {
-  res.json({ message: "Rest-Inn Api" });
-});
-
 app.use((req, res) => {
   res.status(404).json({ message: "Endpoint does not exist!" });
 });
