@@ -89,5 +89,5 @@ The above end point deletes a property based on the id provided.
 3. Create a folder within the project called **config**.  This config folder must be on the root.
 4. Within the **config** folder, create a file called **keys.env**
 5. Within the **keys.env** file, create the below environment variables :
-      - **MONGODB_CONNECTION_STRING** - Assign your MongoDB Database Connection String for your Test cases. Ensure that this value points to a different database because the data for this will b wiped after your test cases run.
+      - **MONGODB_CONNECTION_STRING** - Assign your MongoDB Database Connection String for your Test cases. Ensure that this value points to a different database because the data for this will be wiped after your test cases run.
 6. Run application (locally) by running : **npm run dev**
