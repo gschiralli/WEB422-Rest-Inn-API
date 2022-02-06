@@ -26,7 +26,7 @@ exports.getCustomerById = async (req, res) => {
     }
   } catch (error) {
     if (error.name === "CastError" && error.kind === "ObjectId") {
-      res.status(500).json({
+      res.status(404).json({
         message: `Customer with the id ${req.params.id} is not in our database`,
       });
     } else {
