@@ -24,7 +24,7 @@ The above end point returns a customer based on the id provided.
 
 ### POST /properties
 
-The above end point creates a property. You must submit the property data in the body of the request (as JSON), The data includes  :
+The above end point creates a property. You must submit the property data in the body of the request (as JSON), the data includes  :
 
 title (required),
 rentalPrice (required),
