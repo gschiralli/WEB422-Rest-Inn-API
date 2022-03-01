@@ -3,13 +3,27 @@ const mongoose = require("mongoose");
 
 const customerController = require("./controllers/Customer.js");
 const propertyController = require("./controllers/Property.js");
+const cors = require("cors");
 
 if (process.env.NODE_ENV !== "production") {
   require("dotenv").config({ path: "config/keys.env" });
 }
+const PORT = process.env.PORT || 3000;
+
 const app = express();
 
-const PORT = process.env.PORT || 3000;
+let allowlist = ["http://localhost:3000"];
+let corsOptionsDelegate = function (req, callback) {
+  let corsOptions;
+  if (allowlist.indexOf(req.header("Origin")) !== -1) {
+    corsOptions = { origin: true }; // reflect (enable) the requested origin in the CORS response
+  } else {
+    corsOptions = { origin: false }; // disable CORS for this request
+  }
+  callback(null, corsOptions); // callback expects two parameters: error and options
+};
+
+app.use(cors(corsOptionsDelegate));
 
 app.use(express.json());
 
