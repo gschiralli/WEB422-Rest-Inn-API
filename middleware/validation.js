@@ -5,14 +5,6 @@ const {
   updatePropertySchema,
 } = require("./joi.js");
 
-exports.isValidId = async (req, res, next) => {
-  if (!mongoose.isValidObjectId(req.params.id)) {
-    res.status(400).json({ message: `The ID ${req.params.id} is invalid` });
-  } else {
-    next();
-  }
-};
-
 exports.createPropertyValidate = async (req, res, next) => {
   try {
     const value = await createPropertySchema.validateAsync(req.body, {

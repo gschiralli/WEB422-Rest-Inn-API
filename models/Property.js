@@ -39,6 +39,11 @@ const propertySchema = new Schema({
   },
 });
 
+propertySchema.pre("save", function (next) {
+  this.type =
+    this.type.trim()[0].toUpperCase() + this.type.slice(1).toLowerCase();
+  next();
+});
 const Property = mongoose.model("Short Term Property", propertySchema);
 
 module.exports = Property;
