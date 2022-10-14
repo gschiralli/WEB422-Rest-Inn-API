@@ -12,7 +12,10 @@ const PORT = process.env.PORT || 3000;
 
 const app = express();
 
-let allowlist = ["http://localhost:3000"];
+let allowlist = [
+  "http://localhost:3000",
+  "https://fervent-murdock-67a72d.netlify.app",
+];
 let corsOptionsDelegate = function (req, callback) {
   let corsOptions;
   if (allowlist.indexOf(req.header("Origin")) !== -1) {
