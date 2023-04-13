@@ -4,7 +4,7 @@
 
 A RESTful API that allows administrator to create, read, edit and delete properties. Also allows to create and read customers.
 
-## Production Link : https://intense-spire-46577.herokuapp.com/
+## Production Link : https://curious-bonnet-dog.cyclic.app/
 
 ## End Points
 
